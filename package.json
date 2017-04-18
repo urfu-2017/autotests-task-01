@@ -1,0 +1,14 @@
+{
+  "name": "qa-task-03",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "mocha tests",
+    "cover": "istanbul cover ./node_modules/.bin/_mocha tests --report text-summary"
+  },
+  "author": "Sergey Zhigalov <zhigalov@yandex-team.ru>",
+  "license": "MIT",
+  "devDependencies": {
+    "istanbul": "0.4.5",
+    "mocha": "3.2.0"
+  }
+}
