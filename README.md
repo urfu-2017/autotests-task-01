@@ -1,4 +1,4 @@
-# "Покер на костях" [![Build Status](https://travis-ci.org/Zhigalov/qa-task-03.svg?branch=master)](https://travis-ci.org/Zhigalov/qa-task-03)
+# "Покер на костях" [![Build Status](https://travis-ci.org/urfu-2016/qa-task-03.svg?branch=master)](https://travis-ci.org/urfu-2016/qa-task-03)
 
 «Все, что происходит в Вегасе — остается в Вегасе»
 
