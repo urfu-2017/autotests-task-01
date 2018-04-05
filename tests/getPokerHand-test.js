@@ -8,5 +8,9 @@ describe('getPokerHand', () => {
         assert.equal(actual, 'Покер');
     });
 
-    // Напишите тесты на ваш замечательный код здесь
+    it('should return `Каре` when there is only 4 equal numbers', () => {
+        const actual = getPokerHand([1, 1, 1, 1, 2]);
+
+        assert.equal(actual, 'Каре');
+    })
 });
