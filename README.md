@@ -47,6 +47,6 @@ git push origin master
 
 ### Почитать
   * [Слайды лекции автотесты](#https://github.com/urfu-2017/testing-slides)
-  * [Как отправить пуллреквест](https://urfu-2017.github.io/javascript-slides/01-intro/#/37)
+  * [Как отправить пуллреквест](https://urfu-2016.github.io/javascript-slides/01-intro/#/37)
 
 ![](https://cloud.githubusercontent.com/assets/1654243/25169630/1e67721c-2501-11e7-8bf1-05f81bdced55.jpg)
