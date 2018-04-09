@@ -2,11 +2,11 @@ const assert = require('assert');
 const getPokerHand = require('../lib/getPokerHand');
 
 describe('getPokerHand', () => {
-    it('should return `Покер`` for [4, 4, 4, 4, 4]', () => {
-        const actual = getPokerHand([4, 4, 4, 4, 4]); assert.equal(actual, 'Покер`');
+    it('should return `Покер` for [4, 4, 4, 4, 4]', () => {
+        const actual = getPokerHand([4, 4, 4, 4, 4]); assert.equal(actual, 'Покер');
     });
-	 it('should return `Каре` for [1, 2, 6, 4, 2]', () => {
-        const actual = getPokerHand([1, 2, 6, 4, 2]); assert.equal(actual, 'Каре');
+	 it('should return `Каре` for [1, 5, 1, 1, 1]', () => {
+        const actual = getPokerHand([1, 5, 1, 1, 1]); assert.equal(actual, 'Каре');
     });
 	 it('should return `Фулл хаус` for [3, 5, 3, 5, 5]', () => {
         const actual = getPokerHand([3, 5, 3, 5, 5]); assert.equal(actual, 'Фулл хаус');
