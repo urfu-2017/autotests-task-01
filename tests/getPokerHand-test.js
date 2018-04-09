@@ -2,26 +2,26 @@ const assert = require('assert');
 const getPokerHand = require('../lib/getPokerHand');
 
 describe('getPokerHand', () => {
-    it('should return `Покер` for [4, 4, 4, 4, 4]', () => {
-        const actual = getPokerHand([4, 4, 4, 4, 4]); assert.equal(actual, 'Покер');
+    it('should return `Ю?` for [4, 4, 4, 4, 4]', () => {
+        const actual = getPokerHand([4, 4, 4, 4, 4]); assert.equal(actual, 'Ю?');
     });
-	 it('should return `Каре` for [1, 2, 6, 4, 2]', () => {
-        const actual = getPokerHand([1, 2, 6, 4, 2]); assert.equal(actual, 'Каре');
+	 it('should return `???for [1, 2, 6, 4, 2]', () => {
+        const actual = getPokerHand([1, 2, 6, 4, 2]); assert.equal(actual, '???;
     });
-	 it('should return `Фулл хаус` for [3, 5, 3, 5, 5]', () => {
-        const actual = getPokerHand([3, 5, 3, 5, 5]); assert.equal(actual, 'Фулл хаус');
+	 it('should return `????` for [3, 5, 3, 5, 5]', () => {
+        const actual = getPokerHand([3, 5, 3, 5, 5]); assert.equal(actual, '????');
     });
-	 it('should return `Тройка` for [4, 1, 4, 2, 4]', () => {
-        const actual = getPokerHand([4, 1, 4, 2, 4]); assert.equal(actual, 'Тройка');
+	 it('should return `???for [4, 1, 4, 2, 4]', () => {
+        const actual = getPokerHand([4, 1, 4, 2, 4]); assert.equal(actual, '???;
     });
-	 it('should return `Две пары` for [1, 6, 1, 6, 4]', () => {
-        const actual = getPokerHand([1, 6, 1, 6, 4]); assert.equal(actual, 'Две пары');
+	 it('should return `T??` for [1, 6, 1, 6, 4]', () => {
+        const actual = getPokerHand([1, 6, 1, 6, 4]); assert.equal(actual, 'T??');
     });
-	 it('should return `Пара ` for [1, 4, 3, 6, 1]', () => {
-        const actual = getPokerHand([1, 4, 3, 6, 1]); assert.equal(actual, 'Пара');
+	 it('should return `Р?? for [1, 4, 3, 6, 1]', () => {
+        const actual = getPokerHand([1, 4, 3, 6, 1]); assert.equal(actual, 'Р??;
     });
-	 it('should return `Наивысшее очко` for [6, 4, 2, 1, 5]', () => {
-        const actual = getPokerHand([6, 4, 2, 1, 5]); assert.equal(actual, 'Наивысшее очко');
+	 it('should return `???? ??for [6, 4, 2, 1, 5]', () => {
+        const actual = getPokerHand([6, 4, 2, 1, 5]); assert.equal(actual, '???? ??;
     });
 	it('should throw error when length is not 5', () => {
      const actual = () => getPokerHand([1, 1, 1, 1]); assert.throws(actual, /This is not a combination for poker/);
