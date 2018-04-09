@@ -54,13 +54,18 @@ describe('getPokerHand', () => {
 
         assert.throws(actual, /Введите список из 5 костей./);
     })
-    it('should throw error when array contains  numbers more than 6', () => {
+    it('should throw error when array contains numbers more than 6', () => {
         const actual = () => getPokerHand([1, 2, 3, 4, 7]);
 
         assert.throws(actual, /Кость может принимать значения только от 1 до 6./);
     })
-    it('should throw error when array contains  numbers less than 1', () => {
+    it('should throw error when array contains numbers less than 1', () => {
         const actual = () => getPokerHand([1, 2, 0, 4, 5]);
+
+        assert.throws(actual, /Кость может принимать значения только от 1 до 6./);
+    })
+    it('should throw error when array contains not a numbers', () => {
+        const actual = () => getPokerHand([1, 2, 'NaN', 4, 5]);
 
         assert.throws(actual, /Кость может принимать значения только от 1 до 6./);
     })
