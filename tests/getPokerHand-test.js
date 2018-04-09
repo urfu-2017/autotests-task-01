@@ -2,11 +2,37 @@ const assert = require('assert');
 const getPokerHand = require('../lib/getPokerHand');
 
 describe('getPokerHand', () => {
-    it('should return `ÐŸÐ¾ÐºÐµÑ€` for [1, 1, 1, 1, 1]', () => {
-        const actual = getPokerHand([1, 1, 1, 1, 1]);
-
-        assert.equal(actual, 'ÐŸÐ¾ÐºÐµÑ€');
+    it('should return `Ïîêåð` for [4, 4, 4, 4, 4]', () => {
+        const actual = getPokerHand([4, 4, 4, 4, 4]); assert.equal(actual, 'Ïîêåð');
     });
-
-    // ÐÐ°Ð¿Ð¸ÑˆÐ¸Ñ‚Ðµ Ñ‚ÐµÑÑ‚Ñ‹ Ð½Ð° Ð²Ð°Ñˆ Ð·Ð°Ð¼ÐµÑ‡Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹ ÐºÐ¾Ð´ Ð·Ð´ÐµÑÑŒ
+	 it('should return `Êàðå` for [1, 2, 6, 4, 2]', () => {
+        const actual = getPokerHand([1, 2, 6, 4, 2]); assert.equal(actual, 'Êàðå');
+    });
+	 it('should return `Ôóëë õàóñ` for [3, 5, 3, 5, 5]', () => {
+        const actual = getPokerHand([3, 5, 3, 5, 5]); assert.equal(actual, 'Ôóëë õàóñ');
+    });
+	 it('should return `Òðîéêà` for [4, 1, 4, 2, 4]', () => {
+        const actual = getPokerHand([4, 1, 4, 2, 4]); assert.equal(actual, 'Òðîéêà');
+    });
+	 it('should return `Äâå ïàðû` for [1, 6, 1, 6, 4]', () => {
+        const actual = getPokerHand([1, 6, 1, 6, 4]); assert.equal(actual, 'Äâå ïàðû');
+    });
+	 it('should return `Ïàðà ` for [1, 4, 3, 6, 1]', () => {
+        const actual = getPokerHand([1, 4, 3, 6, 1]); assert.equal(actual, 'Ïàðà');
+    });
+	 it('should return `Íàèâûñøåå î÷êî` for [6, 4, 2, 1, 5]', () => {
+        const actual = getPokerHand([6, 4, 2, 1, 5]); assert.equal(actual, 'Íàèâûñøåå î÷êî');
+    });
+	it('should throw error when length is not 5', () => {
+     const actual = () => getPokerHand([1, 1, 1, 1]); assert.throws(actual, /This is not a combination for poker/);
+	 });
+	 it('should throw error when length is not 5', () => {
+     const actual = () => getPokerHand([1, 2, 3, 4, 5, 6]); assert.throws(actual, /This is not a combination for poker/);
+	 });
+	 it('should throw error when combination is not a Number', () => {
+     const actual = () => getPokerHand([1, 1, 'h', 1,5]); assert.throws(actual, /There is not a Number/);
+	 });
+	 it('should throw error when value not for the cube', () => {
+     const actual = () => getPokerHand([1, 8, 1, 3, 1,]); assert.throws(actual, /There is a value not for the cube/);
+	 });
 });
