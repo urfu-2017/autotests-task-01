@@ -46,7 +46,7 @@ describe('getPokerHand', () => {
             [
                 /Dice must contain only integers/,
                 [
-                    [1, 1, 1, 1, ''],
+                    [1, 1, 1, 1, '1'],
                     [1, 1, 1, 1, 1.2],
                     [1, 1, 1, 1, null]
                 ]
