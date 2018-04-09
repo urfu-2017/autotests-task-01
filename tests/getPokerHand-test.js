@@ -4,12 +4,12 @@ const getPokerHand = require('../lib/getPokerHand');
 describe('getPokerHand', () => {
     describe('positive', () => {
         describe('simple case', () => {
-            it(`should return 'Покер'\t\tfor '[1, 1, 1, 1, 1]'`, () => {
+            it(`should return 'Покер' for '[1, 1, 1, 1, 1]'`, () => {
                 const actual = getPokerHand([1, 1, 1, 1, 1]);
 
                 assert.equal(actual, 'Покер');
             })
-            it(`should return 'Пара'\t\tfor '[3, 2, 4, 3, 5]'`, () => {
+            it(`should return 'Пара' for '[3, 2, 4, 3, 5]'`, () => {
                 const actual = getPokerHand([3, 2, 4, 3, 5]);
 
                 assert.equal(actual, 'Пара');
@@ -21,44 +21,34 @@ describe('getPokerHand', () => {
             })
         })
         describe('2 difference', () => {
-            it(`should return 'Каре'\t\tfor '[2, 2, 2, 3, 2]'`, () => {
+            it(`should return 'Каре' for '[2, 2, 2, 3, 2]'`, () => {
                 const actual = getPokerHand([2, 2, 2, 3, 2]);
 
                 assert.equal(actual, 'Каре');
             })
-            it(`should return 'Фулл хаус'\tfor '[3, 3, 4, 3, 4]'`, () => {
+            it(`should return 'Фулл хаус' for '[3, 3, 4, 3, 4]'`, () => {
                 const actual = getPokerHand([3, 3, 4, 3, 4]);
 
                 assert.equal(actual, 'Фулл хаус');
             })
         })
         describe('3 difference number', () => {
-            it(`should return 'Две пары'\tfor '[1, 1, 5, 3, 5]'`, () => {
+            it(`should return 'Две пары' for '[1, 1, 5, 3, 5]'`, () => {
                 const actual = getPokerHand([1, 1, 5, 3, 5]);
 
                 assert.equal(actual, 'Две пары');
             })
-            it(`should return 'Тройка'\tfor '[3, 2, 4, 3, 5]'`, () => {
+            it(`should return 'Тройка' for '[6, 6, 6, 5, 2]'`, () => {
                 const actual = getPokerHand([6, 6, 6, 5, 2]);
 
                 assert.equal(actual, 'Тройка');
             })
         })
         describe('onEdge', () => {
-            it(`should return 'Каре'\t\tfor '[1, 1, 1, 1, 6]'`, () => {
-                const actual = getPokerHand([1, 1, 1, 1, 6]);
-
-                assert.equal(actual, 'Каре');
-            })
-            it(`should return 'Покер'\t\tfor '[6, 6, 6, 6, 6]'`, () => {
+            it(`should return 'Покер' for '[6, 6, 6, 6, 6]'`, () => {
                 const actual = getPokerHand([6, 6, 6, 6, 6]);
 
                 assert.equal(actual, 'Покер');
-            })
-            it(`should return 'Каре'\t\tfor '[6, 6, 6, 6, 1]'`, () => {
-                const actual = getPokerHand([6, 6, 6, 6, 1]);
-
-                assert.equal(actual, 'Каре');
             })
         })
         describe('trickyNumber', () => {
@@ -67,12 +57,12 @@ describe('getPokerHand', () => {
 
                 assert.equal(actual, 'Наивысшее очко');
             })
-            it(`should return 'Пара'\t\tfor '[0d5, 0b11, 0b01, 0x4, 0o3]'`, () => {
+            it(`should return 'Пара' for '[0d5, 0b11, 0b01, 0x4, 0o3]'`, () => {
                 const actual = getPokerHand([5, 0b11, 0b01, 0x4, 0o3]);
 
                 assert.equal(actual, 'Пара');
             })
-            it(`should return 'Тройка'\tfor '[+3, +2, 3, +3, 1]'`, () => {
+            it(`should return 'Тройка' for '[+3, +2, 3, +3, 1]'`, () => {
                 const actual = getPokerHand([3, +2, 03, +3, 1]);
 
                 assert.equal(actual, 'Тройка');
@@ -84,22 +74,22 @@ describe('getPokerHand', () => {
             it(`should throw error, if the array contains string`, () => {
                 const testCb = () => getPokerHand([3, 2, '4', 3, 5]);
 
-                assert.throws(testCb, /One or more elements in array is not a number/);
+                assert.throws(testCb, /Array contains not a number/);
             })
             it(`should throw error, if the array contains object`, () => {
                 const testCb = () => getPokerHand([6, {6:6}, 6, 1, 1]);
 
-                assert.throws(testCb, /One or more elements in array is not a number/);
+                assert.throws(testCb, /Array contains not a number/);
             })
             it(`should throw error, if the array contains another array`, () => {
                 const testCb = () => getPokerHand([4, [6], 1, 2, 3]);
 
-                assert.throws(testCb, /One or more elements in array is not a number/);
+                assert.throws(testCb, /Array contains not a number/);
             })
             it(`should throw error, if the array contains undefined value`, () => {
                 const testCb = () => getPokerHand([4, null, 1, undefined, 3]);
 
-                assert.throws(testCb, /One or more elements in array is not a number/);
+                assert.throws(testCb, /Array contains not a number/);
             })
         })
         describe('arrayLength', () => {
@@ -130,22 +120,22 @@ describe('getPokerHand', () => {
             it(`should throw error, if one of number more then 6`, () => {
                 const testCb = () => getPokerHand([3, 7, 5, 1, 6]);
 
-                assert.throws(testCb, /One or more elements in array is out of range/);
+                assert.throws(testCb, /Array\'s element is out of range/);
             })
             it(`should throw error, if one of number less then 1`, () => {
                 const testCb = () => getPokerHand([3, 4, 5, 0, 6]);
 
-                assert.throws(testCb, /One or more elements in array is out of range/);
+                assert.throws(testCb, /Array\'s element is out of range/);
             })
             it(`should throw error, if one of number less then 1 (over)`, () => {
                 const testCb = () => getPokerHand([3, -5, 5, 1, 6]);
 
-                assert.throws(testCb, /One or more elements in array is out of range/);
+                assert.throws(testCb, /Array\'s element is out of range/);
             })
             it(`should throw error, if one of number has type is float`, () => {
                 const testCb = () => getPokerHand([3.5, 4, 5, 1, 6]);
 
-                assert.throws(testCb, /One or more elements in array is out of range/);
+                assert.throws(testCb, /Array\'s element is not Integer/);
             })
         })
     })
