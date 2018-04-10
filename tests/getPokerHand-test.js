@@ -119,28 +119,28 @@ describe('getPokerHand', () => {
             assert.throws(actual, /element with index 1 not input interval 1-6/);
         });
 
-        it('should return Error(`element with index 1 not input interval 1-6`) for [1, 0, 3, 4, 5]', () => {
+        it('should return Error(`element with index 1 not input interval 1-6`) for [1, -1, 3, 4, 5]', () => {
             const actual = () => getPokerHand([1, -1, 3, 4, 5]);
 
             assert.throws(actual, /element with index 1 not input interval 1-6/);
         });
 
-        it('should return Error(`element with index 1 not input interval 1-6`) for [1, 0, 3, 4, 5]', () => {
+        it('should return Error(`element with index 1 not input interval 1-6`) for [1, 7, 3, 4, 5]', () => {
             const actual = () => getPokerHand([1, 7, 3, 4, 5]);
 
             assert.throws(actual, /element with index 1 not input interval 1-6/);
         });
 
-        it('should return Error(`element with index 1 not input interval 1-6`) for [1, 0, 3, 4, 5]', () => {
+        it('should return Error(`element with index 1 not input interval 1-6`) for [1, 8, 3, 4, 5]', () => {
             const actual = () => getPokerHand([1, 8, 3, 4, 5]);
 
             assert.throws(actual, /element with index 1 not input interval 1-6/);
         });
 
-        it('should return Error(`element with index 1 not input interval 1-6`) for [1, 0, 3, 4, 5]', () => {
-            const actual = () => getPokerHand([1, 50, 3, 4, 5]);
+        it('should return Error(`element with index 1 is not integer`) for [1, 1.4, 3, 4, 5]', () => {
+            const actual = () => getPokerHand([1, 1.4, 3, 4, 5]);
 
-            assert.throws(actual, /element with index 1 not input interval 1-6/);
+            assert.throws(actual, /element with index 1 is not integer/);
         });
     });
 });
