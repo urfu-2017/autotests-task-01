@@ -52,8 +52,8 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Введенных значений нет на игральной кости');
     });
-    it('should return `Введенных значений нет на игральной кости` for [7, 2, 4, 5, 3]', () => {
-        const actual = getPokerHand([a, g, 4, 5, 3]);
+    it('should return `Введенных значений нет на игральной кости` for [\'a\', \'g\', 4, 5, 3]', () => {
+        const actual = getPokerHand(['a', 'g', 4, 5, 3]);
 
         assert.equal(actual, 'Введенных значений нет на игральной кости');
     });
