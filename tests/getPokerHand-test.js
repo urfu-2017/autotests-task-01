@@ -77,10 +77,34 @@ describe('getPokerHand', () => {
             assert.throws(actual, /it is not array/);
         });
 
-        it('should return Error(`the array must contain 5 elements`) for [1, 2, 3, 4, 5, 6]', () => {
+        it('should return Error(`the array contain not 5 elements`) for [1, 2, 3, 4, 5, 6]', () => {
             const actual = () => getPokerHand([1, 2, 3, 4, 5, 6]);
 
-            assert.throws(actual, /the array must contain 5 elements/);
+            assert.throws(actual, /the array contain not 5 elements/);
+        });
+
+        it('should return Error(`the array contain not 5 elements`) for [1, 2, 3, 4]', () => {
+            const actual = () => getPokerHand([1, 2, 3, 4]);
+
+            assert.throws(actual, /the array contain not 5 elements/);
+        });
+
+        it('should return Error(`the array contain not 5 elements`) for [1]', () => {
+            const actual = () => getPokerHand([1]);
+
+            assert.throws(actual, /the array contain not 5 elements/);
+        });
+
+        it('should return Error(`the array contain not 5 elements`) for []', () => {
+            const actual = () => getPokerHand([1, 2, 3, 4, 5, 6, 1, 3]);
+
+            assert.throws(actual, /the array contain not 5 elements/);
+        });
+
+        it('should return Error(`the array contain not 5 elements`) for [1, 2, 3, 4]', () => {
+            const actual = () => getPokerHand([1, 2, 3, 4]);
+
+            assert.throws(actual, /the array contain not 5 elements/);
         });
 
         it('should return Error(`element with index 1 not number`) for [1, `2`, 3, 4, 5]', () => {
