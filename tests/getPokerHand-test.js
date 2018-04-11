@@ -58,4 +58,14 @@ describe('getPokerHand', () => {
         assert.throws(() => {return getPokerHand([-2, 3, 0, 6, 1])}, Error, "Array should have values in [1, 2, 3, 4, 5, 6]");
         assert.throws(() => {return getPokerHand([7, 8, 9, 10, 11])}, Error, "Array should have values in [1, 2, 3, 4, 5, 6]");
     });
+
+    it('should throw error `Error` with message `Input should be an array` for not array input', () => {
+        assert.throws(() => {return getPokerHand(2)}, Error, "Input should be an array");
+        assert.throws(() => {return getPokerHand('hello')}, Error, "Input should be an array");
+    });
+
+    it('should throw error `Error` with message `Array should contains only integers` for not integers in array', () => {
+        assert.throws(() => {return getPokerHand([1.1, 2, 3, 4, 5])}, Error, "Array should contains only integers");
+        assert.throws(() => {return getPokerHand([1, 2, '10', 7, 8])}, Error, "Array should contains only integers");
+    });
 });
