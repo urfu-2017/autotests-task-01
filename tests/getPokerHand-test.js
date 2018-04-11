@@ -44,4 +44,20 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Тройка');
     });
+
+    it('should return `Dice is not an Array` error for `array`', () => {
+        assert.throws(() => getPokerHand('array'), /Dice is not an Array/);
+    });
+
+    it('should return `Length is not equal to 5` error for [2, 5, 2, 3, 2, 2]', () => {
+        assert.throws(() => getPokerHand([2, 5, 2, 3, 2, 2]), /Length is not equal to 5/);
+    });
+
+    it('should return `Array does contain not integer` error for [2, five, 1, 3, 5]', () => {
+        assert.throws(() => getPokerHand([2, 'five', 1, 3, 5]), /Array does contain not integer/);
+    });
+
+    it('should return `Number is not in the valid range` error for [5, 5, 5, 0, 5]', () => {
+        assert.throws(() => getPokerHand([5, 5, 5, 0, 5]), /Number is not in the valid range/);
+    });
 });
