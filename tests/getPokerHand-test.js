@@ -84,6 +84,9 @@ describe('getPokerHand', () => {
             it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
                 assert.throws(() => getPokerHand([3, 2, 3, [1,0], 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
             }); 
+            it('should throw `Values must be integers` error for object element', () => {                 
+                assert.throws(() => getPokerHand([3, 2, 3, {'var': 'let'}, 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+                });
         });
 
         describe('no five dice', () => {
@@ -99,7 +102,7 @@ describe('getPokerHand', () => {
         });
     });
 
-    describe('values is not integer', () => {
+    describe('value is not array', () => {
         it('should return `please pass an array`', () => {
             assert.throws(() => getPokerHand(), /please pass an array/);
         }); 
@@ -121,6 +124,9 @@ describe('getPokerHand', () => {
         it('should return `please pass an array`', () => {
             assert.throws(() => getPokerHand('2'), /please pass an array/);
         }); 
+        it('should throw `Values must be integers` error for object element', () => {                 
+        assert.throws(() => getPokerHand({'asd': 'asd'}), /please pass an array/);
+        });
     });
 
     
