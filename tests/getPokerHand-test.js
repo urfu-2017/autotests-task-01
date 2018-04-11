@@ -38,33 +38,21 @@ describe('getPokerHand', () => {
         assert.equal(actual, 'Наивысшее очко');
     });
     it('should throw new Error (\'Длина больше требуемой\') for [2, 4, 5, 3, 1,1]', () => {
-        try {
-            getPokerHand([ 2, 4, 5, 3, 1, 1]);
-            throw new Error('Длина больше требуемой')
-        } catch (error) {
-            assert.equal(error.message, 'Длина меньше требуемой');
-        }});
+        const actual = () =>   getPokerHand([ 2, 4, 5, 3, 1, 1]);
+            assert.equal(actual, 'Длина меньше требуемой');
+        });
     it('should throw new Error (\'Длина меньше требуемой\') for [2, 4, 5, 3]', () => {
-        try {
-            getPokerHand([ 2, 4, 5, 3]);
-            throw new Error('Длина меньше требуемой')
-        } catch (error) {
-        assert.equal(error.message, 'Длина меньше требуемой');
-    }});
+        const actual = () =>   getPokerHand([ 2, 4, 5, 3]);
+             assert.equal(actual, 'Длина меньше требуемой');
+    });
     it('should throw new Error (\'Введенных значений нет на игральной кости\') for [7, 2, 4, 5, 3]', () => {
-        try {
-        getPokerHand([7, 2, 4, 5, 3]);
-            throw new Error('Введенных значений нет на игральной кости')
-        } catch (error) {
-        assert.equal(error.message, 'Введенных значений нет на игральной кости');
+        const actual = () =>  getPokerHand([7, 2, 4, 5, 3]);
+          assert.equal(actual, 'Введенных значений нет на игральной кости');
     }});
 
     it('should throw new Error (\'Введенных значений нет на игральной кости\') for [\'a\', \'g\', 4, 5, 3]', () => {
-    try {
-        getPokerHand(['a', 'g', 4, 5, 3]);
-        throw new Error('Введенных значений нет на игральной кости')
-    } catch (error) {
-        assert.equal(error.message, 'Введенных значений нет на игральной кости');
+        const actual = () =>   getPokerHand(['a', 'g', 4, 5, 3]);
+           assert.equal(actual, 'Введенных значений нет на игральной кости');
     }});
 });
 
