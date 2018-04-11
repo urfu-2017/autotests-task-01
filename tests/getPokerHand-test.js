@@ -120,7 +120,7 @@ describe('getPokerHand', () => {
         });
         // значения в массиве вне диапазона, не приграничные
         it('should throw error when argument-array contains values out of range 1-6', () => {
-            const actual = () => getPokerHand([1, 2, 3, 7, 6]);
+            const actual = () => getPokerHand([11, 2, 3, 14, 6]);
 
             assert.throws(actual, /dice should contain only positive integer numbers between 1 and 6/i);
         });
