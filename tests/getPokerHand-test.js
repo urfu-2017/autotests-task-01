@@ -46,19 +46,26 @@ describe('getPokerHand', () => {
     });
 
 
+	it('should throw error when there is an invalid value', () => {
+		 const actual = () => getPokerHand([1, 2, 4, 5, 10]);
+
+		 assert.throws(actual, /Значения не должны быть меньше 1 и больше 6/);
+	});	
+
+
 	it('should throw error when there is less then 5 dice', () => {
-		 const actual =  getPokerHand([1, 2, 4, 5]);
+		 const actual = () => getPokerHand([1, 2, 4, 5]);
 
-		 assert.equal(actual, 'Неверное число костей');
+		 assert.throws(actual, /Введите значения 6 кубиков/);
 	});
 
-
+	
 	it('should throw error when there is more then 5 dice', () => {
-		 const actual =  getPokerHand([1, 2, 4, 5, 6, 6]);
+		 const actual = () => getPokerHand([1, 2, 4, 5, 6, 6]);
 
-		 assert.equal(actual, 'Неверное число костей');
-	});
-    
+		 assert.throws(actual, /Введите значения 6 кубиков/);
+	});    
+
     it('should throw error when there is wrong dices', () => {
 		 const actual = () => getPokerHand([1, 2, 4, 5, 'word']);
 
