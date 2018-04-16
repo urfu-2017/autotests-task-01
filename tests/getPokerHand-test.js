@@ -51,49 +51,49 @@ describe('getPokerHand', () => {
 
 describe('errors', () => {
 
-    it('should throw new Error if argument is not array)', () => {
+    it('should throw error if argument is not array)', () => {
         const actual = () => getPokerHand();
 
         assert.throws(actual, 'Current value is not array');
     });
 
-    it('should throw new Error if it`s more than 1 arg', () => {
-        const actual = () => getPokerHand([1, 1, 1, 1, 1], ['not okay']);
+    it('should throw error if number of arguments is not equal to one', () => {
+        const actual = () => getPokerHand([1, 1, 1, 1, 1], 'second argument');
 
         assert.throws(actual, 'There must be only one argument');
     });
 
-    it('should throw new Error if array length more than 5', () => {
+    it('should throw error if array length more than five', () => {
         const actual = () => getPokerHand([1, 1, 1, 1, 1, 1]);
 
-        assert.throws(actual, 'There must be 5 elements');
+        assert.throws(actual, 'There must be five elements');
     });
 
-    it('should throw new Error if array length less than 5', () => {
+    it('should throw error if array length less than five', () => {
         const actual = () => getPokerHand([1, 1, 1, 1]);
 
         assert.throws(actual, 'There must be 5 elements');
     });
 
-    it('should throw new RangeError if element of array less than 1', () => {
+    it('should throw RangeError if element of array less than one', () => {
         const actual = () => getPokerHand([1, 1, 1, 1, 0]);
 
         assert.throws(actual, 'Element is not in range');
     });
 
-    it('should throw new RangeError if element of array more than 5', () => {
-        const actual = () => getPokerHand([1, 1, 1, 1, 6]);
+    it('should throw RangeError if element of array more than 6', () => {
+        const actual = () => getPokerHand([1, 1, 1, 1, 7]);
 
         assert.throws(actual, 'Element is not in range');
     });
 
-    it('should throw new TypeError if element of array not a number', () => {
-        const actual = () => getPokerHand([1, 1, 1, 1, 'd']);
+    it('should throw TypeError if element of array not a number', () => {
+        const actual = () => getPokerHand([1, 1, 1, 1, 'string']);
 
         assert.throws(actual, 'Element must be integer');
     });
 
-    it('should throw new TypeError if element of array not integer', () => {
+    it('should throw TypeError if element of array not integer', () => {
         const actual = () => getPokerHand([1, 1, 1, 1, 3.1]);
 
         assert.throws(actual, 'Element must be integer');
