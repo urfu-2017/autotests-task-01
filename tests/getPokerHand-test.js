@@ -66,4 +66,9 @@ describe('getPokerHand', () => {
         const actual = () => getPokerHand([1, 1, 1, 1, NaN]);
         assert.throws(actual, /Bad dice value/);
     });
+
+    it('should throw error when dice value is not integer', () => {
+        const actual = () => getPokerHand([1, 1, 1, 1, 1.2]);
+        assert.throws(actual, /Bad dice value/);
+    });
 });
