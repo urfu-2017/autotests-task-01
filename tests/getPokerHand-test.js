@@ -29,9 +29,12 @@ describe('getPokerHand', () => {
         { arg: [5, 4, 3, 2, 1], expected: names.best },
         { arg: [1, 3, 2, 5, 4], expected: names.best },
         { arg: [1, 2, 3, 4], expected: 'error' },
+        { arg: [1, 2, 3, 4, 1.2], expected: 'error' },
+        { arg: [1, 2, 3, 4, 'a'], expected: 'error' },
         { arg: [1, 2, 3, 4, 5, 1], expected: 'error' },
         { arg: [1, 2, 3, 4, 6], expected: 'error' },
         { arg: [1, 2, 3, 4, -1], expected: 'error' },
+        { arg: undefined, expected: 'error' },
         { arg: null, expected: 'error' },
         { arg: 1234, expected: 'error' },
         { arg: [], expected: 'error' }
