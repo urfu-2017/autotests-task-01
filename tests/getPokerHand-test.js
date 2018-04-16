@@ -1,8 +1,8 @@
 const assert = require('assert');
 const getPokerHand = require('../lib/getPokerHand');
 
-describe('getPokerHand', () => {
-    describe('Correct input', () => {
+describe('Функция getPokerHand', () => {
+    describe('Корректные входные данные', () => {
         const nameToCombinations = {
             Покер: [
                 [1, 1, 1, 1, 1],
@@ -37,7 +37,7 @@ describe('getPokerHand', () => {
         for (let combinationName in nameToCombinations) {
             describe(`${combinationName}`, () => {
                 for (let combination of nameToCombinations[combinationName]) {
-                    it(`should return \`${combinationName}\` for [${combination}]`, () => {
+                    it(`Должно вернуться \`${combinationName}\` c аргументом [${combination}]`, () => {
                         const actual = getPokerHand(combination);
 
                         assert.equal(actual, `${combinationName}`);
@@ -47,11 +47,11 @@ describe('getPokerHand', () => {
         }
     });
 
-    describe('Incorrect input', () => {
+    describe('Некорректные входные данные', () => {
         describe('Не массив', () => {
             const inputs = ['lala', 5, undefined, null, () => {}, true, {}];
             inputs.forEach(input => {
-                it(`should throw error for type ${typeof input}: ${input}`, () => {
+                it(`Должно выброситься исключение c типом данных аргумента ${typeof input}: ${input}`, () => {
                     assert.throws(() => getPokerHand(input))
                 });
             })
@@ -62,10 +62,11 @@ describe('getPokerHand', () => {
                 [],
                 [5],
                 [4, 2, 3, 4],
-                [6, 5, 3, 1, 2, 6]
+                [6, 5, 3, 1, 2, 6],
+                [6, 5, 3, 1, 7]
             ];
             arrays.forEach(array => {
-                it(`should throw error for array: [${array}]`, () => {
+                it(`Должно выброситься исключение с аргументом: [${array}]`, () => {
                     assert.throws(() => getPokerHand(array))
                 });
             })
