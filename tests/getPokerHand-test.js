@@ -56,13 +56,20 @@ describe('getPokerHand', () => {
         
         it('should throw error when any NaN in input', () => {
             const nanInInput = () => getPokerHand([10, "valet", "dama", "korol", "tyz"])
-            assert.throws(nanInInput, /only numbers/)
+            assert.throws(nanInInput, /only integer numbers/)
+        })
+
+        it('should throw error when any not integers in input', () => {
+            const nanInInput = () => getPokerHand([10, 10.1, 10.2, 10.3, 10.4])
+            assert.throws(nanInInput, /only integer numbers/)
         })
 
         it('should throw error when numbers not in range [1..6]', () => {
             const nanInInput = () => getPokerHand([10, 11, 12, 13, 14])
             assert.throws(nanInInput, /in range \[1\.\.6\]/)
         })
+
+
     })
 
 });
