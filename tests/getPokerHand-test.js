@@ -61,6 +61,18 @@ describe('getPokerHand', () => {
             const actual  = () => getPokerHand([1, 1.1 , 3, 4, 6])
             assert.throws(actual, "Недопустимые элементы в массиве");
         });
+        it ('should throw error for array in array',() =>{
+            const actual  = () => getPokerHand([1, [1] , 3, 4, 6])
+            assert.throws(actual, "Недопустимые элементы в массиве");
+        });
+        it ('should throw error for empty value',() =>{
+            const actual  = () => getPokerHand()
+            assert.throws(actual, "Должен быть передан массив");
+        });
+        it ('should throw error for NaN',() =>{
+            const actual  = () => getPokerHand(NaN)
+            assert.throws(actual, "Должен быть передан массив");
+        });
     });
 
     describe('Positive', () => {
