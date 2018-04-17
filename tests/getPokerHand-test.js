@@ -54,6 +54,12 @@ describe('getPokerHand', () => {
 	});	
 
 
+    it('should throw error when there is an invalid value', () => {
+         const actual = () => getPokerHand([1, 2, 0, 5, 4]);
+
+         assert.throws(actual, /Значения не должны быть меньше 1 и больше 6/);
+    }); 
+
 	it('should throw error when there is less then 5 dice', () => {
 		 const actual = () => getPokerHand([1, 2, 4, 5]);
 
