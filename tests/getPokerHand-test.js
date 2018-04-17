@@ -2,61 +2,32 @@ const assert = require('assert');
 const getPokerHand = require('../lib/getPokerHand');
 
 describe('getPokerHand', () => {
-    it('should Error `Не массив!`', () => {
-        assert.throws(() => getPokerHand({}), 'Не массив!');
-    });
+    [
+        { dice: {}, expected: 'Не массив!' },
+        { dice: [1,2], expected: 'Значений должно быть 5!' },
+        { dice: [2,3,4,5,7], expected: 'Значения должны быть от 1 до 6!' },
+        { dice: [2,3,4,5,0], expected: 'Значения должны быть от 1 до 6!' },
+        { dice: [0.6,3,4,6,1], expected: 'Значения должны быть целыми!' },
+        { dice: ['a',3,4,6,1], expected: 'Значения должны быть целыми!' },
+    ].forEach(({ dice, expected }) =>
+        it(`should Error '${expected}' for '${dice}'`, () => {
+            assert.throws(() => getPokerHand(dice), new RegExp(expected));
+        })
+    );
 
-    it('should Error `Значений должно быть 5!`', () => {
-        assert.throws(() => getPokerHand([1,2]), 'Значений должно быть 5!');
-    });
+    [
+        { dice: [1, 1, 1, 1, 1], expected: 'Покер' },
+        { dice: [3, 3, 2, 3, 3], expected: 'Каре' },
+        { dice: [1, 2, 1, 2, 1], expected: 'Фулл хаус' },
+        { dice: [4, 5, 4, 4, 2], expected: 'Тройка' },
+        { dice: [6, 6, 2, 1, 2], expected: 'Две пары' },
+        { dice: [4, 2, 1, 3, 4], expected: 'Пара' },
+        { dice: [6, 5, 3, 2, 1], expected: 'Наивысшее очко' },
+    ].forEach(({ dice, expected }) =>
+        it(`should return '${expected}' for '${dice}`, () => {
+            const actual = getPokerHand(dice);
 
-    it('should Error `Значения должны быть от 1 до 6!`', () => {
-        assert.throws(() => getPokerHand([2,3,4,5,6,7]), 'Значения должны быть от 1 до 6!');
-    });
-
-    it('should Error `Значения должны быть от 1 до 6!`', () => {
-        assert.throws(() => getPokerHand(['a',3,4,5,6,1]), 'Значения должны быть от 1 до 6!');
-    });
-
-    it('should return `Покер` for [1, 1, 1, 1, 1]', () => {
-        const actual = getPokerHand([1, 1, 1, 1, 1]);
-
-        assert.equal(actual, 'Покер');
-    });
-
-    it('should return `Каре` for [3, 3, 2, 3, 3]', () => {
-        const actual = getPokerHand([3, 3, 2, 3, 3]);
-
-        assert.equal(actual, 'Каре');
-    });
-
-    it('should return `Фулл хаус` for [1, 2, 1, 2, 1]', () => {
-        const actual = getPokerHand([1, 2, 1, 2, 1]);
-
-        assert.equal(actual, 'Фулл хаус');
-    });
-
-    it('should return `Тройка` for [4, 5, 4, 4, 2]', () => {
-        const actual = getPokerHand([4, 5, 4, 4, 2]);
-
-        assert.equal(actual, 'Тройка');
-    });
-
-    it('should return `Две пары` for [6, 6, 0, 1, 0]', () => {
-        const actual = getPokerHand([6, 6, 0, 1, 0]);
-
-        assert.equal(actual, 'Две пары');
-    });
-
-    it('should return `Пара` for [0, 2, 1, 3, 0]', () => {
-        const actual = getPokerHand([0, 2, 1, 3, 0]);
-
-        assert.equal(actual, 'Пара');
-    });
-
-    it('should return `Наивысшее очко` for [6, 5, 3, 2, 0]', () => {
-        const actual = getPokerHand([6, 5, 3, 2, 0]);
-
-        assert.equal(actual, 'Наивысшее очко');
-    });
+            assert.equal(actual, expected);
+        })
+    );
 });
