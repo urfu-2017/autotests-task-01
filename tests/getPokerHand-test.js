@@ -2,10 +2,9 @@ const assert = require('assert');
 const getPokerHand = require('../lib/getPokerHand');
 describe('getPokerHand', () => {
     describe('positive', () => {
-        var dice = [1,2,3,4,5];
-            it('should return `Наивысшее очко` for '+ dice, () => {
-                var actual = getPokerHand(dice);  
-                assert.equal(actual, 'Наивысшее очко');
+            it('should return `Наивысшее очко` for [6,2,3,4,5]', () => {
+                    const actual = getPokerHand([6, 2, 3, 4, 5]);  
+                    assert.equal(actual, 'Наивысшее очко');
             });
 
             it('should return `Покер` for [1, 1, 1, 1, 1]', () => {
