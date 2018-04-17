@@ -46,6 +46,7 @@ describe('getPokerHand', () => {
     });
 
 
+
 	it('should throw error when there is an invalid value', () => {
 		 const actual = () => getPokerHand([1, 2, 4, 5, 10]);
 
@@ -72,7 +73,21 @@ describe('getPokerHand', () => {
 		 assert.throws(actual, /Значения должны быть числами/);
 	});
 
-	
+
+    it('should throw error when there not array', () => {
+         const actual = () => getPokerHand(5);
+
+         assert.throws(actual, /Введите массив/);
+    });
+
+
+    it('should throw error when there not array', () => {
+         const actual = () => getPokerHand("4rdcvhj");
+
+         assert.throws(actual, /Введите массив/);
+    });
+
 
     // Напишите тесты на ваш замечательный код здесь
 });
+
