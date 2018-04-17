@@ -3,19 +3,11 @@ const getPokerHand = require('../lib/getPokerHand');
 describe('getPokerHand', () => {
     describe('positive', () => {
         var dice = [1,2,3,4,5];
-        for (var i =0; i<6; i++)
-        {
             it('should return `Наивысшее очко` for '+ dice, () => {
                 var actual = getPokerHand(dice);  
                 assert.equal(actual, 'Наивысшее очко');
             });
-            for (var j =0; j<5; j++)
-            {
-                dice[j]++;
-                if(dice[j]>6)
-                dice[j] = 1;
-            }
-        }
+
             it('should return `Покер` for [1, 1, 1, 1, 1]', () => {
                     const actual = getPokerHand([1, 1, 1, 1, 1]);           
                     assert.equal(actual, 'Покер');
@@ -49,43 +41,43 @@ describe('getPokerHand', () => {
     describe('Negative', () => {
         describe('dice more than 6', () => {
             it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 9, 1, 6, 4]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+                assert.throws(() => getPokerHand([3, 9, 1, 6, 4]), /The dice must be no more than 6 and not less than 1/);
             }); 
             it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 3, 1, 12, 4]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+                assert.throws(() => getPokerHand([3, 3, 1, 12, 4]), /The dice must be no more than 6 and not less than 1/);
             }); 
         });
 
         describe('dice less than 1', () => {
             it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, 0, 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+                assert.throws(() => getPokerHand([3, 2, 3, 0, 5]), /The dice must be no more than 6 and not less than 1/);
             }); 
             it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, -10, 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+                assert.throws(() => getPokerHand([3, 2, 3, -10, 5]), /The dice must be no more than 6 and not less than 1/);
             }); 
         });
 
         describe('values is not integer', () => {
-            it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, '0', 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, '0', 5]), /Value no integer/);
             }); 
-            it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, null, 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, null, 5]), /Value no integer/);
             }); 
-            it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, 4.1, 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, 4.1, 5]), /Value no integer/);
             }); 
-            it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, undefined, 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, undefined, 5]), /Value no integer/);
             }); 
-            it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, NaN, 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, NaN, 5]), /Value no integer/);
             }); 
-            it('should return `The dice must be no more than 6 and not less than 1 and be an integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, [1,0], 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, [1,0], 5]), /Value no integer/);
             }); 
-            it('should throw `Values must be integers` error for object element', () => {                 
-                assert.throws(() => getPokerHand([3, 2, 3, {'var': 'let'}, 5]), /The dice must be no more than 6 and not less than 1 and be an integer/);
+            it('should return `Value no integer`', () => {                 
+                assert.throws(() => getPokerHand([3, 2, 3, {'var': 'let'}, 5]), /Value no integer/);
                 });
         });
 
@@ -96,7 +88,7 @@ describe('getPokerHand', () => {
             it('should return `no five dice`', () => {
                 assert.throws(() => getPokerHand([2,3,4]), /no five dice/);
             }); 
-            it('should return `no five dice` ', () => {
+            it('should return `no five dice`', () => {
                 assert.throws(() => getPokerHand([3, 2, 3, 4, 1, 5]), /no five dice/);
             }); 
         });
@@ -124,7 +116,7 @@ describe('getPokerHand', () => {
         it('should return `please pass an array`', () => {
             assert.throws(() => getPokerHand('2'), /please pass an array/);
         }); 
-        it('should throw `Values must be integers` error for object element', () => {                 
+        it('should return `please pass an array`', () => {                 
         assert.throws(() => getPokerHand({'asd': 'asd'}), /please pass an array/);
         });
     });
