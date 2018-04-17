@@ -60,30 +60,9 @@ describe('getPokerHand', () => {
             it('should return `Value no integer`', () => {
                 assert.throws(() => getPokerHand([3, 2, 3, '0', 5]), /Value no integer/);
             }); 
-            it('should return `Value no integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, null, 5]), /Value no integer/);
-            }); 
-            it('should return `Value no integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, 4.1, 5]), /Value no integer/);
-            }); 
-            it('should return `Value no integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, undefined, 5]), /Value no integer/);
-            }); 
-            it('should return `Value no integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, NaN, 5]), /Value no integer/);
-            }); 
-            it('should return `Value no integer`', () => {
-                assert.throws(() => getPokerHand([3, 2, 3, [1,0], 5]), /Value no integer/);
-            }); 
-            it('should return `Value no integer`', () => {                 
-                assert.throws(() => getPokerHand([3, 2, 3, {'var': 'let'}, 5]), /Value no integer/);
-                });
         });
 
         describe('no five dice', () => {
-            it('should return `no five dice`', () => {
-                assert.throws(() => getPokerHand([]), /no five dice/);
-            }); 
             it('should return `no five dice`', () => {
                 assert.throws(() => getPokerHand([2,3,4]), /no five dice/);
             }); 
@@ -100,24 +79,6 @@ describe('getPokerHand', () => {
         it('should return `please pass an array`', () => {
             assert.throws(() => getPokerHand( null), /please pass an array/);
         }); 
-        it('should return `please pass an array`', () => {
-            assert.throws(() => getPokerHand(undefined), /please pass an array/);
-        }); 
-        it('should return `please pass an array`', () => {
-            assert.throws(() => getPokerHand(NaN), /please pass an array/);
-        }); 
-        it('should return `please pass an array`', () => {
-            assert.throws(() => getPokerHand(2), /please pass an array/);
-        }); 
-        it('should return `please pass an array`', () => {
-            assert.throws(() => getPokerHand(2.1), /please pass an array/);
-        }); 
-        it('should return `please pass an array`', () => {
-            assert.throws(() => getPokerHand('2'), /please pass an array/);
-        }); 
-        it('should return `please pass an array`', () => {                 
-        assert.throws(() => getPokerHand({'asd': 'asd'}), /please pass an array/);
-        });
     });
 
     
