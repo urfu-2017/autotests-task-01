@@ -18,6 +18,25 @@ describe('getPokerHand', () => {
           assert.equal(res, test.expected);
         });
     });
+	
+	it('should throw for more than 5 cards', function() {
+	    var res = () => getPokerHand([1, 2, 3, 4, 5, 6]);
+	    assert.throws(res, Error);
+    });
+	it('should not throw on points greater than 5', function() {
+	    var res = () => getPokerHand([6, 6, 6, 6 ,6]);
+	    assert.doesNotThrow(res, Error);
+    });
+	
+	it('should throw on negative points', function() {
+	    var res = () => getPokerHand([-1, -1, -1, -1 ,-1]);
+	    assert.throws(res, Error);
+    });
+	
+	it('should throw on incorrect input', function() {
+	    var res = () => getPokerHand('a');
+	    assert.throws(res, Error);
+    });
 
     // Напишите тесты на ваш замечательный код здесь
 });
