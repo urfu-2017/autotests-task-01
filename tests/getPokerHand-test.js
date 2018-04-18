@@ -48,10 +48,16 @@ describe('getPokerHand', () => {
     });
 
     describe('Негативные', ()=> {
-        it('should throw `NAN` error for 15', () => {
+        it('should throw `Not an array` error for 15', () => {
             const cb = () => getPokerHand(15);
 
-            assert.throws(cb,/NAN/);
+            assert.throws(cb,/Not an array/);
+        });
+
+        it('should throw `Not an array` error for nothing', () => {
+            const cb = () => getPokerHand();
+
+            assert.throws(cb,/Not an array/);
         });
 
         it('should throw `NAN in array` error for [1, \'\', 5, 3, 2]', () => {
@@ -78,6 +84,12 @@ describe('getPokerHand', () => {
             assert.throws(cb,/not right length/);
         });
 
+        it('should throw `not right length` error for [4, 5, 3, 2, 1, 4, 5, 1, 2]', () => {
+            const cb = () => getPokerHand([4, 5, 3, 2, 1, 4, 5, 1, 2]);
+
+            assert.throws(cb,/not right length/);
+        });
+
         it('should throw `not an int in array` error for [1.75, 4, 5, 3, 2]', () => {
             const cb = () => getPokerHand([1.75, 4, 5, 3, 2]);
 
@@ -90,7 +102,11 @@ describe('getPokerHand', () => {
             assert.throws(cb,/out of range/);
         });
 
-
+        it('should throw `out of range` error for [1, 4, -1, 3, 2]', () => {
+            const cb = () => getPokerHand([1, 4, -1, 3, 2]);
+            
+            assert.throws(cb,/out of range/);
+        });
     });
     
 
