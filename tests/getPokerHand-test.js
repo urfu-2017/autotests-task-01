@@ -1,7 +1,7 @@
 const assert = require('assert');
 const getPokerHand = require('../lib/getPokerHand');
 
-describe('getPokerHand', () => {
+describe('getPokerHand valid', () => {
     it('should return `Покер` for [1, 1, 1, 1, 1]', () => {
         const actual = getPokerHand([1, 1, 1, 1, 1]);
         assert.equal(actual, 'Покер');
@@ -36,22 +36,37 @@ describe('getPokerHand', () => {
         const actual = getPokerHand([5, 2, 3, 4, 1]);
         assert.equal(actual, 'Наивысшее очко');
     })
+});
+
+describe('getPokerHand invalid', () => {
+    it('should throw an error if the argument is absent', () => {
+    const cb = () => getPokerHand();
+    assert.throws(cb, /getPokerHand must take an argument/);
+})
+
+    it('should throw an error if the argument is not an array', () => {
+    const cb = () => getPokerHand('meoow');
+    assert.throws(cb, /The argument is not an array/);
+})
 
     it('should throw an error for array size other than 5', () => {
         const cb = () => getPokerHand([5, 3, 4, 1, 2, 3]);
         assert.throws(cb, /The array length must be 5/);
     })
 
-    it('should throw an error for not 1-6 integer values', () => {
+    it('should throw an error for value > 6', () => {
         const cb = () => getPokerHand([7, 3, 4, 1, 2]);
-        assert.throws(cb, /The value is not an integer from 1 to 6/);
+        assert.throws(cb, /The value is not in range 1-6/);
     })
 
-    it('should throw an error for non-numeric values', () => {
-        const cb = () => getPokerHand([{ value: 5 }, 3, 4, 1, 2]);
-        assert.throws(cb, /The value is not a number/);
+    it('should throw an error for value < 1', () => {
+    const cb = () => getPokerHand([2, 0, 4, 1, 2]);
+    assert.throws(cb, /The value is not in range 1-6/);
+})
+
+    it('should throw an error if value is not an integer', () => {
+        const cb = () => getPokerHand([1.7, 3, 4, 1, 2]);
+        assert.throws(cb, /The value is not an integer/);
     })
-
-
 });
 
