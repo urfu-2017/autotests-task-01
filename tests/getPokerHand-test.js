@@ -7,8 +7,6 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Покер');
     });
-
-    // Напишите тесты на ваш замечательный код здесь
     
     it('should return `Каре` for [1, 1, 1, 1, 2]', () => {
         const actual = getPokerHand([1, 1, 1, 1, 2]);
