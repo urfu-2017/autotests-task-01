@@ -97,4 +97,13 @@ describe('getPokerHand', () => {
             assert.equal(error.message, 'Неправильное значение на кости');
         }
     });
+
+    it('should throw error when there is wrong dices', () => {
+        try {
+            getPokerHand([1,2,3,4,-200]);
+            throw new Error('`getPokerHand` should throw error')
+        } catch (error) {
+            assert.equal(error.message, 'Неправильное значение на кости');
+        }
+    });
 });
