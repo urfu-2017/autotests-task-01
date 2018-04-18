@@ -45,4 +45,36 @@ describe('getPokerHand', () => {
 
         assert.equal(actual, 'Наивысшее очко');
     });
+    
+    // Негативные тесты
+    
+    it('should throw `Ошибка: в функцию ничего не передали`', () => {
+        const actual = getPokerHand();
+
+        assert.equal(actual, 'Ошибка: в функцию ничего не передали');
+    });
+    
+    it('should throw `Ошибка: в функцию передали не массив` for true', () => {
+        const actual = getPokerHand(true);
+
+        assert.equal(actual, 'Ошибка: в функцию передали не массив');
+    });
+    
+    it('should throw `Ошибка: массив должен быть из пяти элементов` for [1, 2, 3, 4, 5, 6]', () => {
+        const actual = getPokerHand([1, 2, 3, 4, 5, 6]);
+
+        assert.equal(actual, 'Ошибка: массив должен быть из пяти элементов');
+    });
+    
+    it('should throw `Ошибка: элемент массива - не число` for [1, "буквы", 3, 4, 5]', () => {
+        const actual = getPokerHand([1, "буквы", 3, 4, 5]);
+
+        assert.equal(actual, 'Ошибка: элемент массива - не число');
+    });
+    
+    it('should throw `Ошибка: элемент массива меньше единицы` for [0, 2, 3, 4, 5]', () => {
+        const actual = getPokerHand([0, 2, 3, 4, 5]);
+
+        assert.equal(actual, 'Ошибка: элемент массива меньше единицы');
+    });
 });
