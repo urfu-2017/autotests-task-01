@@ -57,8 +57,8 @@ describe('getPokerHand', () => {
         const actual = () => getPokerHand([1.2, 4, 4, 5, 3]);
         assert.throws(actual, /Есть дробные значения/);
     });
-    it('should throw new Error (\'Введён не массив\') for [12345]', () => {
-        const actual = () => getPokerHand([12345]);
+    it('should throw new Error (\'Введён не массив\') for \'12345\'', () => {
+        const actual = () => getPokerHand(12345);
         assert.throws(actual, /Введён не массив/);
     });
 
