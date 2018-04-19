@@ -45,14 +45,21 @@ describe('getPokerHand', () => {
         const actual = () => getPokerHand([ 2, 4, 5, 3]);
         assert.throws(actual, /Длина меньше требуемой/);
     });
-    it('should throw new Error (\'Введенных значений нет на игральной кости\') for [7, 2, 4, 5, 3]', () => {
+    it('should throw new Error (\'Есть значения за пределами диапазона кости\') for [7, 2, 4, 5, 3]', () => {
          const actual = () => getPokerHand([7, 2, 4, 5, 3]);
-        assert.throws(actual, /Введенных значений нет на игральной кости/);
+        assert.throws(actual, /Есть значения за пределами диапазона кости/);
     });
-    it('should throw new Error (\'Введенных значений нет на игральной кости\') for [\'a\', \'g\', 4, 5, 3]', () => {
+    it('should throw new Error (\'Есть нечисловые значения\') for [\'a\', \'g\', 4, 5, 3]', () => {
         const actual = () => getPokerHand(['a', 'g', 4, 5, 3]);
-        assert.throws(actual, /Введенных значений нет на игральной кости/);
-
+        assert.throws(actual, /Есть нечисловые значения/);
+    });
+    it('should throw new Error (\'Есть дробные значения\') for [1.2, 4, 4, 5, 3]', () => {
+        const actual = () => getPokerHand([1.2, 4, 4, 5, 3]);
+        assert.throws(actual, /Есть дробные значения/);
+    });
+    it('should throw new Error (\'Введён не массив\') for [12345]', () => {
+        const actual = () => getPokerHand([12345]);
+        assert.throws(actual, /Введён не массив/);
     });
 
-});    // Напишите тесты на ваш замечательный код здесь
+});
