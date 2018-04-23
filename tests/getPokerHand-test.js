@@ -42,6 +42,11 @@ describe('getPokerHand', () => {
     })
 
     describe('Negative', () => {
+        it('should throw error when null in input', () => {
+            const notArray = () => getPokerHand(null)
+            assert.throws(notArray, /not Array/) 
+        })
+
         it('should throw error when not an array in input', () => {
             const notArray = () => getPokerHand("[1, 2, 3, 4, 5]")
             assert.throws(notArray, /not Array/) 
@@ -64,11 +69,15 @@ describe('getPokerHand', () => {
             assert.throws(nanInInput, /only integer numbers/)
         })
 
-        it('should throw error when numbers not in range [1..6]', () => {
-            const nanInInput = () => getPokerHand([10, 11, 12, 13, 14])
-            assert.throws(nanInInput, /in range \[1\.\.6\]/)
+        it('should throw error when exist numbers above range [1..6]', () => {
+            const aboveRange = () => getPokerHand([2, 3, 4, 5, 7])
+            assert.throws(aboveRange, /in range \[1\.\.6\]/)
         })
 
+        it('should throw error when exist numbers below range [1..6]', () => {
+            const belowRange = () => getPokerHand([0, 1, 2, 3, 4])
+            assert.throws(belowRange, /in range \[1\.\.6\]/)
+        })
 
     })
 
