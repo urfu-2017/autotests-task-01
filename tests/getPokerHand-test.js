@@ -60,6 +60,16 @@ describe('getPokerHand', () => {
             it('should return `Value no integer`', () => {
                 assert.throws(() => getPokerHand([3, 2, 3, '0', 5]), /Value no integer/);
             }); 
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, NaN, 5]), /Value no integer/);
+            }); 
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, null, 5]), /Value no integer/);
+            }); 
+            it('should return `Value no integer`', () => {
+                assert.throws(() => getPokerHand([3, 2, 3, 4.1, 5]), /Value no integer/);
+            }); 
+
         });
 
         describe('no five dice', () => {
@@ -78,6 +88,15 @@ describe('getPokerHand', () => {
         }); 
         it('should return `please pass an array`', () => {
             assert.throws(() => getPokerHand( null), /please pass an array/);
+        }); 
+        it('should return `please pass an array`', () => {                 
+        assert.throws(() => getPokerHand('[1, 3, 4, 5, 6]'), /please pass an array/);
+                });
+        it('should return `please pass an array`', () => {                 
+                assert.throws(() => getPokerHand(), /please pass an array/);
+        });
+        it('should return `please pass an array`', () => {                 
+                assert.throws(() => getPokerHand(NaN), /please pass an array/);
         }); 
     });
 
