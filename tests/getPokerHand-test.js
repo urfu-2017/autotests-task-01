@@ -34,35 +34,14 @@ describe('getPokerHand', () => {
 
             assert.equal(actual, 'Пара');
         });
-        it('should return `Лучшая кость-5` for [1, 2, 3, 4, 5]', () => {
-            const actual = getPokerHand([1, 2, 3, 4, 5]);
-
-            assert.equal(actual, 'Лучшая кость-5');
-        });
-        it('should return `Лучшая кость-6` for [6, 2, 3, 4, 5]', () => {
-            const actual = getPokerHand([6, 2, 3, 4, 5]);
-
-            assert.equal(actual, 'Лучшая кость-6');
-        });
-        it('should return `Лучшая кость-6` for [0x6, 2, 3, 4, 5]', () => {
+        it('should return `Наивысшее очко` for [0x6, 2, 3, 4, 5]', () => {
             const actual = getPokerHand([0x6, 2, 3, 4, 5]);
 
-            assert.equal(actual, 'Лучшая кость-6');
+            assert.equal(actual, 'Наивысшее очко');
         });
     });
     describe('negative', () =>
     {
-        it('should throw error 0 array element is not a valid number for [\'z\', 1, 1, 1, 1]', () => {
-            try
-            {
-                getPokerHand(['z', 1, 1, 1, 1]);
-                throw new Error('0 array element is not a valid number')
-            } 
-            catch(error)
-            {
-                assert.equal(error.message, '0 array element is not a valid number');
-            }
-        });
         it('should throw error expected array of length 5. for [1, 1, 1, 1, 1, 1]', () => {
             const nc1 = () => getPokerHand([1, 1, 1, 1, 1, 1]);
             assert.throws(nc1, /expected array of length 5/);
@@ -90,6 +69,10 @@ describe('getPokerHand', () => {
         it('should throw error expected array of length 5. for [1, 1, 1, 1]', () => {
             const nc7 = () => getPokerHand([1, 1, 1, 1]);
             assert.throws(nc7, /expected array of length 5/);
+        });
+        it('should throw error 1 array element is not a valid number for [0x6, 8, 3, 4, 5]', () => {
+            const nc5 = () => getPokerHand([0x6, 8, 3, 4, 5]);
+            assert.throws(nc5, /1 array element is not a valid number/);
         });
     });
 });
