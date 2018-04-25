@@ -87,7 +87,7 @@ describe('getPokerHand', () => {
 	    });
 
 		it('should return /Cell of array less 6/ for [1,7,3,4,5]', () => {
-	    	const actual = () => getPokerHand([0,2,3,4,5]);
+	    	const actual = () => getPokerHand([1,7,3,4,5]);
 
 	    	assert.equal(actual, /Cell of array less 6/);
 	    });	     
