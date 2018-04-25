@@ -42,35 +42,31 @@ describe('getPokerHand', () => {
     });
     describe('negative', () =>
     {
-        it('should throw error expected array of length 5. for [1, 1, 1, 1, 1, 1]', () => {
+        it('should throw error if arraylength > 5 for [1, 1, 1, 1, 1, 1]', () => {
             const nc1 = () => getPokerHand([1, 1, 1, 1, 1, 1]);
             assert.throws(nc1, /expected array of length 5/);
         });
-        it('should throw error expected array of length 5. for \'aaaaaaaaaaaaaaaaaaaa\'', () => {
+        it('should throw error if argument not array for \'aaaaaaaaaaaaaaaaaaaa\'', () => {
             const nc2 = () => getPokerHand('aaaaaaaaaaaaaaaaaaaa');
             assert.throws(nc2, /expected array of length 5/);
         });
-        it('should throw error 1 array element is not a valid number for [0x6, \'2\', 3, 4, 5]', () => {
+        it('should throw error if one of array elements is not a valid number for [0x6, \'2\', 3, 4, 5]', () => {
             const nc3 = () => getPokerHand([0x6, '2', 3, 4, 5]);
             assert.throws(nc3, /1 array element is not a valid number/);
         });
-        it('should throw error expected array of length 5. for {}', () => {
-            const nc4 = () => getPokerHand({});
-            assert.throws(nc4, /expected array of length 5/);
-        });
-        it('should throw error 1 array element is not a valid number for [0x6, -5, 3, 4, 5]', () => {
+        it('should throw error if one of array elements < 0 for [0x6, -5, 3, 4, 5]', () => {
             const nc5 = () => getPokerHand([0x6, -5, 3, 4, 5]);
             assert.throws(nc5, /1 array element is not a valid number/);
         });
-        it('should throw error 2 array element is not a valid number for [0x6, 5, 3.2, 4, 5]', () => {
+        it('should throw error if one of array elements is not a valid number(1,2,3,4,5,6) for [0x6, 5, 3.2, 4, 5]', () => {
             const nc6 = () => getPokerHand([0x6, 5, 3.2, 4, 5]);
             assert.throws(nc6, /2 array element is not a valid number/);
         });
-        it('should throw error expected array of length 5. for [1, 1, 1, 1]', () => {
+        it('should throw error if arraylength < 5 for [1, 1, 1, 1]', () => {
             const nc7 = () => getPokerHand([1, 1, 1, 1]);
             assert.throws(nc7, /expected array of length 5/);
         });
-        it('should throw error 1 array element is not a valid number for [0x6, 8, 3, 4, 5]', () => {
+        it('should throw error if one of array elements > 6 for [0x6, 8, 3, 4, 5]', () => {
             const nc5 = () => getPokerHand([0x6, 8, 3, 4, 5]);
             assert.throws(nc5, /1 array element is not a valid number/);
         });
