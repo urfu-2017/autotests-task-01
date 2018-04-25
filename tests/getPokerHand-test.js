@@ -50,7 +50,7 @@ describe('getPokerHand', () => {
 
 	describe('Not Positive', () =>{
 
-		it('should return `Empty input` for ' '', () => {
+		it('should return `Empty input` for empty input', () => {
 			const actual = () => getPokerHand();
 
 			assert.equal(actual, /Empty input/);
