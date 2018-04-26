@@ -68,7 +68,7 @@ describe('getPokerHand', () => {
 	        assert.equal(actual, `In array should be more than 5 elements`);
 	    }); // more than 5 elements
 
-	    it('should return `In array should be more than 5 elements` for [1,2,3,4,5,6]', () => {
+	    it('should return `In array should be more than 5 elements` for [1,2,3,4]', () => {
 	        const actual = () => getPokerHand([1,2,3,4]);
 
 	        assert.equal(actual, `In array should be less than 5 elements`);
