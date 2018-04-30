@@ -51,59 +51,120 @@ describe('Функция getPokerHand', () => {
         describe('Не массив', () => {
             const inputs = ['lala', 5, undefined, null, () => {}, true, {}];
             inputs.forEach(input => {
-                it(`Должно выброситься исключение c типом данных аргумента ${typeof input} (${input})`, () => {
-                    assert.throws(() => getPokerHand(input))
+                it(`Должно выброситься TypeError "getPokerHand: dice не является массивом" ` +
+                    `c типом данных аргумента ${typeof input} (${input})`, () => {
+                    assert.throws(
+                        () => getPokerHand(input),
+                        error => {
+                            return Object.getPrototypeOf(error) === TypeError.prototype &&
+                                /getPokerHand: dice не является массивом/.test(error.message);
+                        }
+                    )
                 });
             })
         });
 
         describe('Пустой вход', () => {
-            it(`Должно выброситься исключение без аргументов`, () => {
-                assert.throws(() => getPokerHand())
+            it(`Должно выброситься TypeError "getPokerHand: dice не является массивом" без аргументов`, () => {
+                assert.throws(
+                    () => getPokerHand(),
+                    error => {
+                        return Object.getPrototypeOf(error) === TypeError.prototype &&
+                            /getPokerHand: dice не является массивом/.test(error.message);
+                    }
+                )
             });
         });
 
         describe('Некорректный массив', () => {
             {
                 const array = [6, 5, 3, 1, 2, 6];
-                it(`Должно выброситься исключение для массива [${array}], ` +
-                    `размер которого больше 5 (длина = ${array.length})`, () => {
-                    assert.throws(() => getPokerHand(array))
+                it(`Должно выброситься Error "getPokerHand: массив dice имеет длину не 5" ` +
+                    `для массива [${array}], размер которого больше 5 (длина = ${array.length})`, () => {
+                    assert.throws(
+                        () => getPokerHand(array),
+                        error => {
+                            return Object.getPrototypeOf(error) === Error.prototype &&
+                                /getPokerHand: массив dice имеет длину не 5/.test(error.message);
+                        }
+                    )
                 });
             }
             {
                 const array = [6, 5, 3, 1];
-                it(`Должно выброситься исключение для массива [${array}], ` +
-                    `размер которого меньше 5 (длина = ${array.length})`, () => {
-                    assert.throws(() => getPokerHand(array))
+                it(`Должно выброситься Error "getPokerHand: массив dice имеет длину не 5" ` +
+                    `для массива [${array}], размер которого меньше 5 (длина = ${array.length})`, () => {
+                    assert.throws(
+                        () => getPokerHand(array),
+                        error => {
+                            return Object.getPrototypeOf(error) === Error.prototype &&
+                                /getPokerHand: массив dice имеет длину не 5/.test(error.message);
+                        }
+                    )
                 });
             }
             {
                 const array = [6, 5, 3, 1, 'bug'];
-                it(`Должно выброситься исключение для массива [${array}], ` +
-                    `содержащего не числа (некорректный_элемент = ${array[array.length - 1]})`, () => {
-                    assert.throws(() => getPokerHand(array))
+                it(`Должно выброситься TypeError ` +
+                    `"getPokerHand: массив dice содержит элемент, не являющийся целым числом от 1 до 6" ` +
+                    `для массива [${array}], содержащего не числа ` +
+                    `(некорректный_элемент = ${array[array.length - 1]})`, () => {
+                    assert.throws(
+                        () => getPokerHand(array),
+                        error => {
+                            return Object.getPrototypeOf(error) === TypeError.prototype &&
+                                /getPokerHand: массив dice содержит элемент, не являющийся целым числом от 1 до 6/
+                                    .test(error.message);
+                        }
+                    )
                 });
             }
             {
                 const array = [6, 5, 3, 1, 0];
-                it(`Должно выброситься исключение для массива [${array}], ` +
-                    `содержащего целые числа меньше 1 (некорректный_элемент = ${array[array.length - 1]})`, () => {
-                    assert.throws(() => getPokerHand(array))
+                it(`Должно выброситься TypeError ` +
+                    `"getPokerHand: массив dice содержит элемент, не являющийся целым числом от 1 до 6" ` +
+                    `для массива [${array}], содержащего целые числа меньше 1 ` +
+                    `(некорректный_элемент = ${array[array.length - 1]})`, () => {
+                    assert.throws(
+                        () => getPokerHand(array),
+                        error => {
+                            return Object.getPrototypeOf(error) === TypeError.prototype &&
+                                /getPokerHand: массив dice содержит элемент, не являющийся целым числом от 1 до 6/
+                                    .test(error.message);
+                        }
+                    )
                 });
             }
             {
                 const array = [6, 5, 3, 1, 7];
-                it(`Должно выброситься исключение для массива [${array}], ` +
-                    `содержащего целые числа больше 6 (некорректный_элемент = ${array[array.length - 1]})`, () => {
-                    assert.throws(() => getPokerHand(array))
+                it(`Должно выброситься TypeError ` +
+                    `"getPokerHand: массив dice содержит элемент, не являющийся целым числом от 1 до 6" ` +
+                    `для массива [${array}], содержащего целые числа больше 6 ` +
+                    `(некорректный_элемент = ${array[array.length - 1]})`, () => {
+                    assert.throws(
+                        () => getPokerHand(array),
+                        error => {
+                            return Object.getPrototypeOf(error) === TypeError.prototype &&
+                                /getPokerHand: массив dice содержит элемент, не являющийся целым числом от 1 до 6/
+                                    .test(error.message);
+                        }
+                    )
                 });
             }
             {
                 const array = [6, 5, 3, 1, 5.5];
-                it(`Должно выброситься исключение для массива [${array}], ` +
-                    `содержащего дробные числа (некорректный_элемент = ${array[array.length - 1]})`, () => {
-                    assert.throws(() => getPokerHand(array))
+                it(`Должно выброситься TypeError ` +
+                    `"getPokerHand: массив dice содержит элемент, не являющийся целым числом от 1 до 6" ` +
+                    `для массива [${array}], содержащего дробные числа ` +
+                    `(некорректный_элемент = ${array[array.length - 1]})`, () => {
+                    assert.throws(
+                        () => getPokerHand(array),
+                        error => {
+                            return Object.getPrototypeOf(error) === TypeError.prototype &&
+                                /getPokerHand: массив dice содержит элемент, не являющийся целым числом от 1 до 6/
+                                    .test(error.message);
+                        }
+                    )
                 });
             }
         });
