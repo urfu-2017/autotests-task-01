@@ -23,6 +23,17 @@ describe('getPokerHand', () => {
 	    var res = () => getPokerHand([1, 2, 3, 4, 5, 6]);
 	    assert.throws(res, Error);
     });
+	
+	it('should throw for less than 5 cards', function() {
+	    var res = () => getPokerHand([1, 2]);
+	    assert.throws(res, Error);
+    });
+	
+	it('should throw on empty input', function() {
+	    var res = () => getPokerHand([]);
+	    assert.throws(res, Error);
+    });
+	
 	it('should not throw on points greater than 5', function() {
 	    var res = () => getPokerHand([6, 6, 6, 6 ,6]);
 	    assert.doesNotThrow(res, Error);
