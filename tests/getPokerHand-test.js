@@ -35,4 +35,10 @@ describe('getPokerHand', () => {
 	 it('should throw error when value not for the cube', () => {
      const actual = () => getPokerHand([1, 8, 1, 3, 1,]); assert.throws(actual, /There is a value not for the cube/);
 	 });
+	it('should throw error when value not integer', () => {
+     const actual = () => getPokerHand([1, 8, 1.5, 3, 1,]); assert.throws(actual, /There is a value not for the cube/);
+	 });
+	 it('should throw error combination is not array', () => {
+     const actual = () => getPokerHand("1, 8, 1, 3, 1,"); assert.throws(actual, /Combination is not an array/);
+	 });
 });
